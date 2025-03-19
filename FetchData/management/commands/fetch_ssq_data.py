@@ -1,14 +1,15 @@
+
 from datetime import datetime
 from django.core.management.base import BaseCommand
 from FetchData.management.commands.common import LotteryDataFetcher
-from FetchData.datamodels.data_super_model import LotterySuperLottoHistory
+from FetchData.datamodels.data_ssq_model import LotterySSQHistory
 
-class SuperLottoDataFetcher(LotteryDataFetcher):
+class SSQDataFetcher(LotteryDataFetcher):
     def __init__(self):
-        super().__init__(lottery_id=281)
+        super().__init__(lottery_id=1)
 
     def fetch_all_results(self):
-        start_date = "2008-01-01"
+        start_date = "2000-01-01"
         end_date = datetime.now().strftime("%Y-%m-%d")
         all_results = self.fetch_results_by_date(start_date, end_date)
 
@@ -16,25 +17,29 @@ class SuperLottoDataFetcher(LotteryDataFetcher):
             filtered_results = self.filter_results(all_results)
             return filtered_results
         else:
-            print("未能获取到超级大乐透数据")
+            print("未能获取到快乐8数据")
             return []
 
 class Command(BaseCommand):
-    help = 'Fetch and store Super Lotto lottery data'
+    help = 'Fetch and store KL8 lottery data'
 
     def handle(self, *args, **options):
-        fetcher = SuperLottoDataFetcher()
+        fetcher = SSQDataFetcher()
         results = fetcher.fetch_all_results()
 
         if results:
             # 对结果按期号进行排序
             sorted_results  = sorted(results, key=lambda x: int(x['issue']))
 
-            # 批量插入数据
             for index, result in enumerate(sorted_results , start=1):
+
+                # print(result)
+
                 open_time = datetime.strptime(result['openTime'], '%Y-%m-%d')
-                LotterySuperLottoHistory.objects.update_or_create(
-                    issue=result['issue'], 
+                # open_time = pytz.timezone('UTC').localize(open_time)  # 添加时区信息
+
+                LotterySSQHistory.objects.update_or_create(
+                    issue=result['issue'],
                     defaults={
                         'index': index,  # 添加索引字段
                         'open_time': open_time,
@@ -48,10 +53,6 @@ class Command(BaseCommand):
                         'week': result['week']
                     }
                 )
-
-            self.stdout.write(self.style.SUCCESS('超级大乐透数据已成功写入数据库'))
+            self.stdout.write(self.style.SUCCESS('快乐8数据已成功写入数据库'))
         else:
-            self.stdout.write(self.style.ERROR('未能获取到超级大乐透数据'))
-
-
-
+            self.stdout.write(self.style.ERROR('未能获取到快乐8数据'))

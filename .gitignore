@@ -1,1 +1,38 @@
+# IDE
 /.idea
+/.vscode
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info
+.python-version
+venv/
+env/
+.venv/
+
+# Django
+staticfiles/
+media/
+*.sqlite3
+*.log
+
+# Environment
+.env
+.env.local
+.env.development
+.env.production
+
+# Development
+.cache
+.coverage
+htmlcov/
+
+# Package
+dist/
+build/
+*.egg
+
+# OS
+.DS_Store
+Thumbs.db
