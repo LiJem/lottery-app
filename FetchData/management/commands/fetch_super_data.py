@@ -20,7 +20,7 @@ class SuperLottoDataFetcher(LotteryDataFetcher):
             return []
 
 class Command(BaseCommand):
-    help = 'Fetch and store Super Lotto lottery data'
+    help = 'Fetch and store 大乐透 lottery data'
 
     def handle(self, *args, **options):
         fetcher = SuperLottoDataFetcher()

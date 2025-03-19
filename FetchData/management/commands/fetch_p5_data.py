@@ -4,9 +4,9 @@ from django.core.management.base import BaseCommand
 from FetchData.management.commands.common import LotteryDataFetcher
 from FetchData.datamodels.data_ssq_model import LotterySSQHistory
 
-class SSQDataFetcher(LotteryDataFetcher):
+class P5DataFetcher(LotteryDataFetcher):
     def __init__(self):
-        super().__init__(lottery_id=1)
+        super().__init__(lottery_id=284)
 
     def fetch_all_results(self):
         start_date = "2000-01-01"
@@ -17,14 +17,14 @@ class SSQDataFetcher(LotteryDataFetcher):
             filtered_results = self.filter_results(all_results)
             return filtered_results
         else:
-            print("未能获取到双色球数据")
+            print("未能获取到排列5数据")
             return []
 
 class Command(BaseCommand):
-    help = 'Fetch and store 双色球 lottery data'
+    help = 'Fetch and store 排列5 lottery data'
 
     def handle(self, *args, **options):
-        fetcher = SSQDataFetcher()
+        fetcher = P5DataFetcher()
         results = fetcher.fetch_all_results()
 
         if results:
@@ -53,6 +53,6 @@ class Command(BaseCommand):
                         'week': result['week']
                     }
                 )
-            self.stdout.write(self.style.SUCCESS('双色球数据已成功写入数据库'))
+            self.stdout.write(self.style.SUCCESS('排列5数据已成功写入数据库'))
         else:
-            self.stdout.write(self.style.ERROR('未能获取到双色球数据'))
+            self.stdout.write(self.style.ERROR('未能获取到排列5数据'))

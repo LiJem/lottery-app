@@ -21,7 +21,7 @@ class KL8DataFetcher(LotteryDataFetcher):
             return []
 
 class Command(BaseCommand):
-    help = 'Fetch and store KL8 lottery data'
+    help = 'Fetch and store 快乐8 lottery data'
 
     def handle(self, *args, **options):
         fetcher = KL8DataFetcher()
