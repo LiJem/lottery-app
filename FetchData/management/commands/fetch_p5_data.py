@@ -2,7 +2,7 @@
 from datetime import datetime
 from django.core.management.base import BaseCommand
 from FetchData.management.commands.common import LotteryDataFetcher
-from FetchData.datamodels.data_ssq_model import LotterySSQHistory
+from FetchData.datamodels.data_p5_model import LotteryP5History
 
 class P5DataFetcher(LotteryDataFetcher):
     def __init__(self):
@@ -38,7 +38,7 @@ class Command(BaseCommand):
                 open_time = datetime.strptime(result['openTime'], '%Y-%m-%d')
                 # open_time = pytz.timezone('UTC').localize(open_time)  # 添加时区信息
 
-                LotterySSQHistory.objects.update_or_create(
+                LotteryP5History.objects.update_or_create(
                     issue=result['issue'],
                     defaults={
                         'index': index,  # 添加索引字段

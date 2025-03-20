@@ -91,8 +91,17 @@ class LotteryDataFetcher:
         return all_results
 
     def filter_results(self, results):
+        """过滤彩票结果数据，移除敏感/冗余字段
+        
+        Args:
+            results: list - 原始彩票结果列表，包含多个开奖结果字典
+            
+        Returns:
+            list - 过滤后的结果列表，已移除'winnerDetails'字段
+        """
         filtered_results = []
         for result in results:
+            # 创建新字典保留除'winnerDetails'外的所有字段
             filtered_result = {key: value for key, value in result.items() if key != 'winnerDetails'}
             filtered_results.append(filtered_result)
         return filtered_results
