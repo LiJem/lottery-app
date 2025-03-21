@@ -38,9 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "FetchData",
+    'corsheaders',  # 确保已添加
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',  # 必须放在最前面
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -134,3 +136,15 @@ REST_FRAMEWORK = {
         'rest_framework.parsers.JSONParser',
     ]
 }
+
+
+# 添加CORS配置
+CORS_ALLOW_ALL_ORIGINS = True  # 允许所有源
+CORS_ALLOW_METHODS = [
+    'GET',
+    'OPTIONS',  # 必须包含OPTIONS方法
+]
+CORS_ALLOW_HEADERS = [
+    'content-type',
+    'authorization',
+]

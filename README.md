@@ -84,3 +84,50 @@ python manage.py sqlmigrate FetchData 0001_initial
 5. 增加使用提示和注意事项
 6. 优化路由配置示例代码的格式
 7. 统一命令格式为代码块形式
+
+
+配置vue 环境
+1.从 Node.js 官网 下载并安装最新版本。
+
+2.检查 Node.js 和 npm 是否安装正确
+打开终端或命令提示符，运行以下命令：
+node -v
+npm -v
+
+3.如果出现问题，检查系统环境变量是否正确配置。
+
+4.使用管理员启动命令行，再次运行第2步的命令：
+
+5. 检查当前的执行策略
+打开 PowerShell（以管理员身份运行），输入以下命令查看当前的执行策略：
+
+powershell
+复制
+Get-ExecutionPolicy
+常见的执行策略包括：
+
+Restricted: 禁止运行任何脚本。
+
+AllSigned: 只允许运行经过数字签名的脚本。
+
+RemoteSigned: 允许运行本地脚本，但远程脚本必须经过数字签名。
+
+Unrestricted: 允许运行所有脚本。
+
+更改执行策略
+为了允许运行 npm.ps1，您需要将执行策略更改为 RemoteSigned 或 Unrestricted。
+
+在 PowerShell 中运行以下命令：
+
+powershell
+复制
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+系统会提示您确认更改，输入 Y 并按回车。
+
+验证更改
+再次运行以下命令，检查执行策略是否已更改：
+
+powershell
+复制
+Get-ExecutionPolicy
+如果输出为 RemoteSigned，说明更改成功。

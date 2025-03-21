@@ -65,7 +65,8 @@ def get_issues_data(lottery_type, issue):
 @api_view(['GET'])
 def lottery_data(request, lottery_type):
     try:
-        data = get_lottery_data(lottery_type)
+        num = int(request.query_params.get('limit', 100))  # 默认取100期
+        data = get_latest_data(lottery_type, num)
         return Response({
             'status': 'success',
             'data': list(data.values())
