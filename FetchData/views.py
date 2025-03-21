@@ -13,7 +13,7 @@ MODEL_MAPPING = {
     '3d': Lottery3dHistory,
     'p5': LotteryP5History,
     'ssq': LotterySSQHistory,
-    'super': LotterySuperLottoHistory,
+    'super': LotterySuperHistory,
 }
 
 def get_lottery_data(lottery_type):

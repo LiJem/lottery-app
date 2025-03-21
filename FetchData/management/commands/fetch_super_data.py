@@ -1,7 +1,7 @@
 from datetime import datetime
 from django.core.management.base import BaseCommand
 from FetchData.management.commands.common import LotteryDataFetcher
-from FetchData.datamodels.data_super_model import LotterySuperLottoHistory
+from FetchData.datamodels.data_super_model import LotterySuperHistory
 
 class SuperLottoDataFetcher(LotteryDataFetcher):
     def __init__(self):
@@ -33,7 +33,7 @@ class Command(BaseCommand):
             # 批量插入数据
             for index, result in enumerate(sorted_results , start=1):
                 open_time = datetime.strptime(result['openTime'], '%Y-%m-%d')
-                LotterySuperLottoHistory.objects.update_or_create(
+                LotterySuperHistory.objects.update_or_create(
                     issue=result['issue'], 
                     defaults={
                         'index': index,  # 添加索引字段

@@ -2,7 +2,7 @@
 from django.db import models
 from FetchData.datamodels.model_manager import LotteryHistoryManager
 
-class LotterySuperLottoHistory(models.Model):
+class LotterySuperHistory(models.Model):
     index = models.IntegerField(null=True, blank=True)  # 添加索引字段
     issue = models.CharField(max_length=10, primary_key=True)  # 期号
     open_time = models.DateField()  # 开奖时间

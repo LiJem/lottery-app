@@ -88,7 +88,7 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
-            name='LotterySuperLottoHistory',
+            name='LotterySuperHistory',
             fields=[
                 ('index', models.IntegerField(blank=True, null=True)),
                 ('issue', models.CharField(max_length=10, primary_key=True, serialize=False)),
