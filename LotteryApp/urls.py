@@ -20,6 +20,5 @@ from FetchData import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('FetchData.urls')),  # 添加API路由
-    path('analysis/', include('LotteryAnalysis.urls'))
+    path('api/', include('FetchData.urls')),
 ]
